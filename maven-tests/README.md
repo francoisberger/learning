@@ -158,3 +158,71 @@ In the parent pom.xml add the java compiler version property to avoid the *Sourc
 ---------------------------------------------
 
 One may add dependencies to other librairies (JUnit, Appache Collections, log4j...). Those dependencies are, as a default, included in the generated jars, wars unless specifically excluded or used for a specific scope. For instance the JUnit dependency is specified with the test scope and will not be included in the runtime application. Another usage is, if we need a dependency for servlet to developpe and build our application, this dependency should not be included in the war file because the application server already provide this library. In such a case the *provided* scope should be used.
+
+## Add filtering on resources or othe files
+---------------------------------------------
+
+We may use filtering to dynamically modify resources or source files. For example, in our a-webapp-module we may want to have an about.jsp with information about the application version. This can be achieved with filtering.
+
+First, define desired properties in the pom.xml :
+
+	<properties>
+
+		...
+
+		<!-- Public name for application -->
+		<application.name>Maven Test</application.name>
+
+		<!-- Build date format -->
+		<maven.build.timestamp.format>dd/MM/yyyy</maven.build.timestamp.format>
+
+		<!-- Property to enforce maven.build.timestamp is available during filtering (bug workaround) -->
+		<application.buildtimestamp>${maven.build.timestamp}</application.buildtimestamp>
+	</properties>
+
+Then, use the mave-war plugin to do the filtering of our about.jsp file. It needs to be included in the pluginManagement section (to define desired version) and in the build section :
+
+	</pluginManagement>
+		<plugins>
+
+			...
+
+			<plugin>
+			  	<groupId>org.apache.maven.plugins</groupId>
+			  	<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version>
+			</plugin>
+		</plugins>
+	</pluginManagement>
+	
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<configuration>
+			   <webResources>
+				  <resource>
+					<filtering>true</filtering>
+					<directory>src/main/webapp</directory>
+					<includes>
+					   <include>jsp/about.jsp</include>
+					</includes>
+				  </resource>
+			   </webResources>
+			</configuration>
+		 </plugin>
+	 </plugins>
+
+Finaly, create the src/main/webapp/jsp/about.jsp file with desired contents :
+
+	<html>
+	<body>
+	<h2>Hello World!</h2>
+	This is application :
+	<ul>
+		<li>Application : ${application.name}</li>
+		<li>Version : ${project.version}</li>
+		<li>Date du build : ${application.buildtimestamp}</li>	
+	</ul>
+	</body>
+	</html>

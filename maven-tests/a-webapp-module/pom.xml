@@ -20,6 +20,13 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+
+    <!-- Public name for application -->
+    <application.name>Maven Test</application.name>
+    <!-- Build date format -->
+    <maven.build.timestamp.format>dd/MM/yyyy</maven.build.timestamp.format>
+    <!-- Property to enforce maven.build.timestamp is available during filtering --> 
+    <application.buildtimestamp>${maven.build.timestamp}</application.buildtimestamp>
   </properties>
 
   <dependencies>
@@ -72,7 +79,31 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.3.2</version>
+        </plugin>
       </plugins>
     </pluginManagement>
+
+    <plugins>
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+           <webResources>
+              <resource>
+                <filtering>true</filtering>
+                <directory>src/main/webapp</directory>
+                <includes>
+                   <include>jsp/about.jsp</include>
+                </includes>
+              </resource>
+           </webResources>
+        </configuration>
+      </plugin>
+     </plugins>
+
   </build>
 </project>
