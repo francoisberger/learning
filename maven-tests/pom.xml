@@ -4,32 +4,13 @@
   
   
   <modelVersion>4.0.0</modelVersion>
-        
-  
-  
   <groupId>io.github.francoisberger</groupId>
-        
-  
-  
   <artifactId>maven-tests</artifactId>
-        
-  
-  
-  <version>1.0-SNAPSHOT</version>
-        
-  
-  
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-        
-  
   
   <name>maven-tests</name>
-        
-  
-  
   <url>http://maven.apache.org</url>
-        
-  
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -43,17 +24,17 @@
             <dependency>
                 <groupId>io.github.francoisberger</groupId>
                 <artifactId>a-module</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>io.github.francoisberger</groupId>
                 <artifactId>another-module</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>io.github.francoisberger</groupId>
                 <artifactId>a-webapp-module</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <!-- ===== Other librairies ===== -->
         </dependencies>
@@ -65,5 +46,4 @@
     <module>a-webapp-module</module>
   </modules>
     
-
 </project>

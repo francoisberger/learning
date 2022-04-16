@@ -4,13 +4,13 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>io.github.francoisberger</groupId>
-    <artifactId>maven-tests</artifactId>
+    <artifactId>tests</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>io.github.francoisberger</groupId>
-  <artifactId>another-module</artifactId>
+  <artifactId>java-tests</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>another-module</name>
+  <name>java-tests</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
