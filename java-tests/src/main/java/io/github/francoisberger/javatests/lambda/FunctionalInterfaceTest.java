@@ -21,11 +21,20 @@ interface AnotherInterface {
 public class FunctionalInterfaceTest {
 
 	public static void main(String[] args) {
-		// The method is defined during object creation
-		Printer printer = () -> {
-			System.out.println("Whatever...");
+		// The method is defined during object creation by implementing the interface
+		Printer printer = new Printer() {
+			@Override
+			public void print() {
+				System.out.println("Whatever...");
+			}
 		};
-		printer.print(); // --> Whatever
+		printer.print(); // --> Whatever...
+
+		// The method is defined during object creation with a lambda
+		Printer lambdaPrinter = () -> {
+			System.out.println("Whatever with a lambda...");
+		};
+		lambdaPrinter.print(); // --> Whatever with a lambda...
 
 		// The method behavior is defined here. We can choose a different name for our
 		// parameter
@@ -38,6 +47,7 @@ public class FunctionalInterfaceTest {
 		// we could perform some calculation based on input arguments
 		AnotherInterface anotherIt = () -> "A returned value";
 		System.out.println(anotherIt.returnSomething()); // --> "A returned value"
+
 	}
 
 }
