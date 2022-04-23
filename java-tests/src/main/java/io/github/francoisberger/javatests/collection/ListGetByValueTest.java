@@ -16,7 +16,8 @@ class MyObject {
 
 	@Override
 	public boolean equals(Object other) {
-		if (other.getClass() != this.getClass()) {
+		// if (other.getClass() != this.getClass()) {
+		if (!(other instanceof MyObject)) {
 			return false;
 		} else {
 			return name.equals(((MyObject) other).getName());
@@ -37,7 +38,8 @@ public class ListGetByValueTest {
 		// based
 		// on the objet.equals method.
 		MyObject objectToSearch = new MyObject("Name 3");
-		System.out.println("Index of " + objectToSearch.getName() + " is " + objects.indexOf(objectToSearch));
+		System.out.println(
+				"Index of " + objectToSearch.getName() + " is " + objects.indexOf(objectToSearch));
 	}
 
 }
