@@ -67,6 +67,37 @@ public class RegexTests {
 		in.close();
 	}
 
+	// Password must be 6 chars long with : one digit, one lower case, one upper case, one special
+	static int checkPassword(String password) {
+		// Return the minimum number of characters to make the password strong
+		int missingLength = 0;
+		if (password.length() < 6) {
+			System.out.println("Too short");
+			missingLength = 6 - password.length();
+		}
+		int requiredLength = 0;
+		if (!password.matches(".*[0-9]+.*")) {
+			requiredLength++;
+		}
+		if (!password.matches(".*[a-z]+.*")) {
+			requiredLength++;
+		}
+		if (!password.matches(".*[A-Z]+.*")) {
+			requiredLength++;
+		}
+		// Here we escape all chars with \\Q and \\E
+		if (!password.matches(".*[\\Q!@#$%^&*()-+\\E]+.*")) {
+			requiredLength++;
+		}
+		if (missingLength == 0) {
+			return requiredLength;
+		} else if (requiredLength < missingLength) {
+			return missingLength;
+		} else {
+			return requiredLength;
+		}
+	}
+
 	public static void main(String[] args) {
 		// IPAdressTest();
 		/// usernameTest();
